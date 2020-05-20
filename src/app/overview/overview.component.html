@@ -1,0 +1,26 @@
+<div class="col-xs-12">
+<h2>Overview</h2>
+<ul class=list-group>
+    <app-single-task *ngFor="let task of tasks"
+    [taskName]="task.name"
+    [taskFolder]="task.folder"
+    [taskCompteur]="task.compteur"
+    [taskId]='task.id'
+></app-single-task>
+</ul>
+   
+
+
+<li>
+    <ul>AllTask</ul>
+    <ul>singleTask</ul>
+
+</li>
+
+<li>
+    <ul>folder1</ul>
+    <ul>folser2</ul>
+</li>
+<button class="btn btn-success"  
+          > Quick Task</button>
+        </div>

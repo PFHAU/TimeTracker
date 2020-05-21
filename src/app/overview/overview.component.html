@@ -1,12 +1,22 @@
 <div class="col-xs-12">
-<h2>Overview</h2>
+<h2 align="center">Overview</h2>
+<h3 align="center">QuickTask</h3>
+<div style=overflow-y:scroll>
+<div class="input-group">
+    <input class="form-control" type="text" placeholder="QuickTask" #taskTitle>
+    <div class="input-group-addon" >
+    <button class="glyphicon glyphicon-pushpin" style="color:green" (click)="addTask(taskTitle)" ></button>
+    </div>
+</div>
 <ul class=list-group>
-    <app-single-task *ngFor="let task of tasks"
+    <div *ngFor="let task of tasks">
+    <app-single-task *ngIf="task.folder=='QuickTask'"
     [taskName]="task.name"
     [taskFolder]="task.folder"
     [taskCompteur]="task.compteur"
     [taskId]='task.id'
 ></app-single-task>
+    </div>
 </ul>
    
 
@@ -21,6 +31,8 @@
     <ul>folder1</ul>
     <ul>folser2</ul>
 </li>
+</div>
 <button class="btn btn-success"  
           > Quick Task</button>
         </div>
+

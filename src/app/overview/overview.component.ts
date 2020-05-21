@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Subscription } from 'rxjs'
 import {TaskService} from "../service/task.service";
+import { LocalStorageService } from '../service/local-storage.service';
 
 @Component({
   selector: 'app-overview',
@@ -16,7 +17,9 @@ export class OverviewComponent implements OnInit {
   @Input() taskFolder: string;
   @Input() taskId: number;
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService,
+              private localStorageService: LocalStorageService
+    ) { }
 
   ngOnInit(){
     this.taskSubscription = this.taskService.tasksSubject.subscribe(
@@ -30,4 +33,17 @@ export class OverviewComponent implements OnInit {
   ngOnDestroy(){
     this.taskSubscription.unsubscribe();
   }
+
+  addTask(taskTitle){
+    const nTask={
+      id:3,
+      name: taskTitle.value,
+      compteur: 0,
+      folder:"QuickTask"
+    }
+    this.taskService.addTask(nTask);
+
+    taskTitle.value='';
+  }
+
 }

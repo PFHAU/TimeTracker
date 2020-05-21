@@ -41,9 +41,10 @@ export class OverviewComponent implements OnInit {
       compteur: 0,
       folder:"QuickTask"
     }
-    this.taskService.addTask(nTask);
-
-    taskTitle.value='';
+    if(taskTitle.value!='' && taskTitle.value!=' '){
+      this.taskService.addTask(nTask);
+      this.localStorageService.stockTask(nTask);
+      taskTitle.value='';
+    }
   }
-
 }

@@ -18,8 +18,7 @@ export class OverviewComponent implements OnInit {
   @Input() taskId: number;
 
   constructor(private taskService: TaskService,
-              private localStorageService: LocalStorageService
-    ) { }
+    ) { }       
 
   ngOnInit(){
     this.taskSubscription = this.taskService.tasksSubject.subscribe(
@@ -36,14 +35,13 @@ export class OverviewComponent implements OnInit {
 
   addTask(taskTitle){
     const nTask={
-      id:3,
+      id:this.tasks.length+1,
       name: taskTitle.value,
       compteur: 0,
       folder:"QuickTask"
     }
     if(taskTitle.value!='' && taskTitle.value!=' '){
       this.taskService.addTask(nTask);
-      this.localStorageService.stockTask(nTask);
       taskTitle.value='';
     }
   }

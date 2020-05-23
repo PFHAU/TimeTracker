@@ -18,6 +18,11 @@ export class TaskService{
         this.emitTaskSubject();
     }
     
+    //update an existing task by id
+    updateTask(id: number, task: Task){
+
+    }
+
     emitTaskSubject(){
         this.tasksSubject.next(this.tasks.slice());
       }

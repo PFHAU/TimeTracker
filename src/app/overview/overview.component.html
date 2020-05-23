@@ -17,21 +17,26 @@
 ></app-single-task>
     </div>
 </ul>
-   
+
+<h3 align="center">Folders</h3>
 
 
-<li>
-    <ul>AllTask</ul>
-    <ul>singleTask</ul>
-
-</li>
-
-<li>
-    <ul>folder1</ul>
-    <ul>folser2</ul>
-</li>
-
-<button class="btn btn-success"  
-          > Quick Task</button>
+    <div *ngFor="let folder of folders">
+        <div *ngIf="folder!='QuickTask'">
+            
+            <div class="input-group-addon" >  
+            <button  style="color:green" [routerLink]="['/folder', folder]" >{{folder}}</button>
         </div>
+        <ul class=list-group>
+        <div *ngFor="let task of tasks">
+            <app-single-task *ngIf="task.folder==folder"
+    [taskName]="task.name"
+    [taskFolder]="task.folder"
+    [taskCompteur]="task.compteur"
+    [taskId]='task.id'
+></app-single-task>
+        </div>
+    </ul>  
+        </div>
+    </div>
 

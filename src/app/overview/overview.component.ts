@@ -3,6 +3,9 @@ import { Subscription } from 'rxjs'
 import {TaskService} from "../service/task.service";
 import { LocalStorageService } from '../service/local-storage.service';
 
+
+
+
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
@@ -11,6 +14,8 @@ import { LocalStorageService } from '../service/local-storage.service';
 export class OverviewComponent implements OnInit {
   tasks: any[]; 
   taskSubscription: Subscription;
+
+  folders=this.taskService.getAllFolder();
 
   @Input() taskName: string;
   @Input() taskCompteur: number;
@@ -33,12 +38,13 @@ export class OverviewComponent implements OnInit {
     this.taskSubscription.unsubscribe();
   }
 
+  
   addTask(taskTitle){
     const nTask={
       id:this.tasks.length+1,
       name: taskTitle.value,
       compteur: 0,
-      folder:"QuickTask"
+      folder:"Web-Service"
     }
     if(taskTitle.value!='' && taskTitle.value!=' '){
       this.taskService.addTask(nTask);
@@ -46,3 +52,5 @@ export class OverviewComponent implements OnInit {
     }
   }
 }
+
+

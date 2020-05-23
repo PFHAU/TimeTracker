@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TaskService } from '../service/task.service';
 import { Observable, Subscription, interval } from 'rxjs';
 import 'rxjs/add/observable/interval';
+import { Task } from '../model/Task.model';
 
 @Component({
   selector: 'app-single-task',
@@ -24,25 +25,15 @@ export class SingleTaskComponent implements OnInit {
   ngOnInit() {
   }
 
+  //pour l'instant ca ne met a jour que si on met pause dans le local storage 
   runTask(){
     
     this.isRuning=!this.isRuning;
     if(this.isRuning){
       this.counter = interval(1000).subscribe(()=> this.taskCompteur++);
-      /*const counter = Observable.interval(1000);
-      counter.subscribe(
-        (value)=>{
-          this.taskCompteur=value;
-        },
-        (error) => {
-          console.log('Uh-oh, an error occurred! : ' + error);
-        },
-        () => {
-          console.log('Observable complete!');
-        } 
-      );*/
     }else{
-
+      const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder)
+      this.taskService.updateTask(this.taskId, t);
       this.counter.unsubscribe();
         }
   }

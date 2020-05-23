@@ -12,11 +12,33 @@ export class TaskService{
 
     constructor(private localStorageService: LocalStorageService) { }
 
+    getAllFolder(){
+        const folders:String[]=[];
+        for(var i=0; i<this.tasks.length; i++){
+            console.log(this.tasks[i].folder);
+            if(!folders.includes(this.tasks[i].folder)){
+                folders.push(this.tasks[i].folder);
+            }
+        }
+        console.log(folders);
+        return folders;
+    }
+
     getTask(idOfTaskToGet: number): Task{
         
         for (var i=0; i< this.tasks.length; i++){
             if(this.tasks[i].id==idOfTaskToGet){
                 return this.tasks[i];
+            }
+        }
+        
+    }
+
+    getTaskIndex(idOfTaskToGet: number){
+        
+        for (var i=0; i< this.tasks.length; i++){
+            if(this.tasks[i].id==idOfTaskToGet){
+                return i;
             }
         }
         
@@ -37,10 +59,14 @@ export class TaskService{
 
     //update an existing task by id
     updateTask(id: number, task: Task){
-
+        this.tasks[this.getTaskIndex(id)]=task;
+        this.localStorageService.updateTasks(this.tasks);
+        this.emitTaskSubject();
     }
 
     emitTaskSubject(){
         this.tasksSubject.next(this.tasks.slice());
       }
+
+
 }

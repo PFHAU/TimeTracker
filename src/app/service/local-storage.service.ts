@@ -23,6 +23,10 @@ export class LocalStorageService{
         }
     }
 
+    updateTasks(tasks:Task[]){
+        this.tasks=tasks;
+        localStorage.tasks = JSON.stringify(this.tasks);
+    }
 
     stockTask(task:Task ){
         try{

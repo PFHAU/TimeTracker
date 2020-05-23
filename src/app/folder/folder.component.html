@@ -1,1 +1,10 @@
 <h3 align="center">{{folderName}}</h3>
+<div *ngFor="let task of tasks">
+    <app-single-task *ngIf="task.folder==folderName"
+[taskName]="task.name"
+[taskFolder]="task.folder"
+[taskCompteur]="task.compteur"
+[taskId]='task.id'
+>{{folderName}}</app-single-task>
+</div>
+

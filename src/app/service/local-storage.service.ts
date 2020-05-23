@@ -32,4 +32,9 @@ export class LocalStorageService{
             console.error("Impossible to save data in localStorage", error);
         }
     }
+
+    deleteTask(task:Task){
+        const index : number = this.tasks.indexOf(task);
+        this.tasks.splice(index,1);
+    }
 }

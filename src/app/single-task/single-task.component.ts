@@ -48,10 +48,8 @@ export class SingleTaskComponent implements OnInit {
   }
 
   deleteTask(){
-    console.log("heloooooooo");
     
     this.taskService.deleteTask(this.taskService.getTask(this.taskId));
-    console.log("helo");
     
   }
 

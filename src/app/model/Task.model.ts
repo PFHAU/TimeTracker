@@ -3,6 +3,7 @@ export class Task{
         public id: number,
         public name: string,
         public compteur: number,
-        public folder: string
+        public folder: string,
+        public isRunning: boolean
     ){}
 }

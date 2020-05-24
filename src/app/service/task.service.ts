@@ -53,7 +53,7 @@ export class TaskService{
     deleteTask(taskToDelete: Task){
         const index : number = this.tasks.indexOf(taskToDelete);
         this.tasks.splice(index,1);
-        this.localStorageService.deleteTask(taskToDelete);
+        this.localStorageService.updateTasks(this.tasks);
         this.emitTaskSubject();
     }
 

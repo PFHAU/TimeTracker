@@ -21,6 +21,7 @@ export class OverviewComponent implements OnInit {
   @Input() taskCompteur: number;
   @Input() taskFolder: string;
   @Input() taskId: number;
+  @Input() taskIsRunning: boolean;
 
   constructor(private taskService: TaskService,
     ) { }       
@@ -44,7 +45,8 @@ export class OverviewComponent implements OnInit {
       id:this.tasks.length+1,
       name: taskTitle.value,
       compteur: 0,
-      folder:"Web-Service"
+      folder:"QuickTask",
+      isRunning: false
     }
     if(taskTitle.value!='' && taskTitle.value!=' '){
       this.taskService.addTask(nTask);

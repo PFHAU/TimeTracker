@@ -16,9 +16,8 @@ export class SingleTaskComponent implements OnInit {
   @Input() taskCompteur: number;
   @Input() taskFolder: string;
   @Input() taskId: number;
+  @Input() taskIsRunning: boolean;
   
-  
-  isRuning=false;
 
   constructor(private taskService: TaskService) { }
 
@@ -28,11 +27,12 @@ export class SingleTaskComponent implements OnInit {
   //pour l'instant ca ne met a jour que si on met pause dans le local storage 
   runTask(){
     
-    this.isRuning=!this.isRuning;
-    if(this.isRuning){
-      this.counter = interval(1000).subscribe(()=> this.taskCompteur++);
+    
+    if(this.taskIsRunning==false){
+      this.taskIsRunning=true;
+      this.counter = interval(1000).subscribe(()=> this.taskService.getTask(this.taskId).compteur++);
     }else{
-      const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder)
+      const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder, false)
       this.taskService.updateTask(this.taskId, t);
       this.counter.unsubscribe();
         }
@@ -44,8 +44,10 @@ export class SingleTaskComponent implements OnInit {
     
   }
 
-  ngInDestroy(){
-    
+  ngOnDestroy(){
+   /* const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder)
+    this.taskService.updateTask(this.taskId, t);
+    this.counter.unsubscribe();*/
   }
 
 }

@@ -39,12 +39,11 @@ export class SingleTaskComponent implements OnInit {
   }
 
   deleteTask(){
-    
     this.taskService.deleteTask(this.taskService.getTask(this.taskId));
-    
   }
 
   ngOnDestroy(){
+    
    /* const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder)
     this.taskService.updateTask(this.taskId, t);
     this.counter.unsubscribe();*/

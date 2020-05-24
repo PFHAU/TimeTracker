@@ -27,4 +27,18 @@ export class FolderComponent implements OnInit {
       this.taskService.emitTaskSubject();
     }
 
+    addTaskToFolder(taskTitle){
+      const nTask={
+        id:this.tasks.length+1,
+        name: taskTitle.value,
+        compteur: 0,
+        folder: this.folderName,
+        isRunning: false
+      }
+      if(taskTitle.value!='' && taskTitle.value!=' '){
+        this.taskService.addTask(nTask);
+        taskTitle.value='';
+      }
+    }
+
 }

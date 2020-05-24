@@ -1,10 +1,19 @@
 <h3 align="center">{{folderName}}</h3>
+<div class="input-group">
+    <input class="form-control" type="text" placeholder="the task name" #taskTitle>
+    <div class="input-group-addon" >
+    <button class="glyphicon glyphicon-pushpin" style="color:green" (click)="addTaskToFolder(taskTitle)" ></button>
+    </div>
+</div>
 <div *ngFor="let task of tasks">
     <app-single-task *ngIf="task.folder==folderName"
 [taskName]="task.name"
 [taskFolder]="task.folder"
 [taskCompteur]="task.compteur"
 [taskId]='task.id'
+[taskIsRunning]='task.isRunning'
 >{{folderName}}</app-single-task>
 </div>
+
+
 

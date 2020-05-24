@@ -64,6 +64,10 @@ export class TaskService{
         this.emitTaskSubject();
     }
 
+    getId(){
+        return this.tasks.length+1;
+    }
+    
     emitTaskSubject(){
         this.tasksSubject.next(this.tasks.slice());
       }

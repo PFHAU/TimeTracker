@@ -22,6 +22,7 @@ export class FolderComponent implements OnInit {
     ) { }
   
     ngOnInit(){
+      //we want all tasks, then pick the ones that belong to this folder
       this.taskSubscription = this.taskService.tasksSubject.subscribe(
         (tasks: any[]) => {
           this.tasks = tasks;

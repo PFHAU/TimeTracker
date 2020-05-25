@@ -13,7 +13,7 @@ export class TaskEditComponent implements OnInit {
   taskEditForm: FormGroup;
   taskId: number = this.route.snapshot.params['taskId'];
   task=this.taskService.getTask(this.taskId);
-  
+  //we use form builder in this component, the form get the data and modify the task
   constructor(private taskService: TaskService,
               private route: ActivatedRoute,
               private router: Router,
@@ -26,6 +26,7 @@ export class TaskEditComponent implements OnInit {
   }
 
   initForm(){
+    //we dont want invalid value here
     this.taskEditForm = this.formBuilder.group({
       taskName:[this.task.name, Validators.required],
       taskFolder: [this.task.folder, Validators.required],

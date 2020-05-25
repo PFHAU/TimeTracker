@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NewFolderComponent implements OnInit {
   folderForm: FormGroup;
+  //form builder is used in this component
   constructor(private formBuilder: FormBuilder,
               private taskService: TaskService,
               private router: Router
@@ -21,12 +22,14 @@ export class NewFolderComponent implements OnInit {
   }
 
   initForm(){
+    //we don't want empty task and folder name, that why we use validator
     this.folderForm = this.formBuilder.group({
       folderTitle:['', Validators.required],
       taskName:['',Validators.required],
     })
   }
 
+  // when the form is submited
   onSubmitForm(){
     const formValue=this.folderForm.value;
     const newTask= new Task(
@@ -35,7 +38,7 @@ export class NewFolderComponent implements OnInit {
       0,
       formValue['folderTitle'],
       false,
-     []
+     [null,null]
     );
     this.taskService.addTask(newTask);
     this.router.navigate(['/overview']);

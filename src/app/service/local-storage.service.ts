@@ -11,7 +11,7 @@ export class LocalStorageService{
     constructor(){}
     tasks:object[]=this.getTasks();
     creneaux:object[]=this.getCreneaux();
-
+    //task part
     getTasks(){
         try{
             if(localStorage.tasks != null){

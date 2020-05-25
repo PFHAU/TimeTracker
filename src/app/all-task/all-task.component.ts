@@ -15,8 +15,9 @@ export class AllTaskComponent implements OnInit {
 
   folders=this.taskService.getAllFolder();
   constructor(private taskService: TaskService) { }
-
+  
   ngOnInit(){
+    //we just want all tasks here.
     this.taskSubscription = this.taskService.tasksSubject.subscribe(
       (tasks: any[]) => {
         this.tasks = tasks;

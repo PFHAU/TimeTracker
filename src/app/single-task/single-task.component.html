@@ -1,5 +1,5 @@
 <li class="list-group-item justify-content-between">
-{{taskName}} {{testfun()}}
+{{taskName}} {{secondToTime()}}
  <button class="glyphicon glyphicon-trash" style="color:red" (click)="deleteTask()"></button>
  <button *ngIf="taskIsRunning==false" class="glyphicon glyphicon-play" style="color:green" (click)="runTask()"></button>
  <button *ngIf="taskIsRunning==true" class="glyphicon glyphicon-pause" style="color:blue" (click)="runTask()"></button>

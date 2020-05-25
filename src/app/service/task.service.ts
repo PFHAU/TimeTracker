@@ -12,6 +12,7 @@ export class TaskService{
 
     constructor(private localStorageService: LocalStorageService) { }
 
+    //return the list of all the folders
     getAllFolder(){
         const folders:String[]=[];
         for(var i=0; i<this.tasks.length; i++){
@@ -24,6 +25,7 @@ export class TaskService{
         return folders;
     }
 
+    //return task that have the given id
     getTask(idOfTaskToGet: number): Task{
         
         for (var i=0; i< this.tasks.length; i++){
@@ -34,6 +36,7 @@ export class TaskService{
         
     }
 
+    //get the index of the task in the list
     getTaskIndex(idOfTaskToGet: number){
         
         for (var i=0; i< this.tasks.length; i++){
@@ -44,12 +47,14 @@ export class TaskService{
         
     }
 
+    //add the given task to the tasks list
     addTask(taskToAdd: Task){
         this.tasks.unshift(taskToAdd);
         this.localStorageService.stockTask(taskToAdd);
         this.emitTaskSubject();
     }
     
+    //delete the given task 
     deleteTask(taskToDelete: Task){
         const index : number = this.tasks.indexOf(taskToDelete);
         this.tasks.splice(index,1);
@@ -64,6 +69,7 @@ export class TaskService{
         this.emitTaskSubject();
     }
 
+    //return the task i
     getId(){
         return this.tasks.length+1;
     }

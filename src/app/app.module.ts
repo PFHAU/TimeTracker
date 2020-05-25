@@ -12,6 +12,7 @@ import { NewFolderComponent } from './new-folder/new-folder.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskEditComponent } from './task-edit/task-edit.component';
 import { AllTaskComponent } from './all-task/all-task.component';
+import { ExportComponent } from './export/export.component';
 
 
 
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
   {path: 'folder/:folder', component: FolderComponent},
   {path: 'newFolder', component: NewFolderComponent},
   {path: 'taskEdit/:taskId', component: TaskEditComponent},
+  {path: 'export', component: ExportComponent},
   {path: 'allTask', component: AllTaskComponent},
   {path: '', component: OverviewComponent},
   {path: '**', redirectTo: 'not-found' }
@@ -33,7 +35,8 @@ const appRoutes: Routes = [
     FolderComponent,
     NewFolderComponent,
     TaskEditComponent,
-    AllTaskComponent
+    AllTaskComponent,
+    ExportComponent
   ],
   imports: [
     BrowserModule,

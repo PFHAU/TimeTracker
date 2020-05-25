@@ -1,0 +1,19 @@
+<h1 align="center">Task Edit</h1>
+<p>{{this.task.name}}</p>
+<form [formGroup]="taskEditForm" (ngSubmit)="onSubmitForm()">
+    <div class="form-group">
+        <label for="taskname">Task Name</label>
+        <input type="text" id="taskName" class="form-control" formControlName="taskName">
+      </div>
+      <div class="form-group">
+        <label for="taskname">Task Folder</label>
+        <input type="text" id="taskFolder" class="form-control" formControlName="taskFolder">
+      </div>
+      <div class="form-group">
+        <label for="taskname">Task Time</label>
+        <input type="text" id="taskFolder" class="form-control" formControlName="taskCompteur">
+      </div>
+      <div align="right">
+        <button  type="submit" class="btn btn-success glyphicon glyphicon-chevron-right" align="left" [disabled]="taskEditForm.invalid"></button>
+    </div> 
+</form>

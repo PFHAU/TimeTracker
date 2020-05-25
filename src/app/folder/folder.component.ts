@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../service/task.service';
 import { Subscription } from 'rxjs';
 
@@ -10,13 +10,15 @@ import { Subscription } from 'rxjs';
 })
 export class FolderComponent implements OnInit {
   
-   folderName: string = this.route.snapshot.params['folder'];
+  folderName: string = this.route.snapshot.params['folder'];
 
 
   tasks: any[]; 
   taskSubscription: Subscription;
   constructor(private taskService: TaskService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router
+    ) { }
   
     ngOnInit(){
       this.taskSubscription = this.taskService.tasksSubject.subscribe(
@@ -39,6 +41,15 @@ export class FolderComponent implements OnInit {
         this.taskService.addTask(nTask);
         taskTitle.value='';
       }
+    }
+
+    deleteFolder(){
+      for(let task of this.tasks){
+        if(task.folder==this.folderName){
+          this.taskService.deleteTask(task)
+        }
+      }
+      this.router.navigate(['/overview']);
     }
 
 }

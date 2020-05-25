@@ -10,6 +10,8 @@ import { TaskService } from './service/task.service';
 import { FolderComponent } from './folder/folder.component';
 import { NewFolderComponent } from './new-folder/new-folder.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TaskEditComponent } from './task-edit/task-edit.component';
+import { AllTaskComponent } from './all-task/all-task.component';
 
 
 
@@ -17,6 +19,8 @@ const appRoutes: Routes = [
   {path: 'overview', component: OverviewComponent},
   {path: 'folder/:folder', component: FolderComponent},
   {path: 'newFolder', component: NewFolderComponent},
+  {path: 'taskEdit/:taskId', component: TaskEditComponent},
+  {path: 'allTask', component: AllTaskComponent},
   {path: '', component: OverviewComponent},
   {path: '**', redirectTo: 'not-found' }
 ]
@@ -27,7 +31,9 @@ const appRoutes: Routes = [
     OverviewComponent,
     SingleTaskComponent,
     FolderComponent,
-    NewFolderComponent
+    NewFolderComponent,
+    TaskEditComponent,
+    AllTaskComponent
   ],
   imports: [
     BrowserModule,

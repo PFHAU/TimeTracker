@@ -30,6 +30,8 @@ export class SingleTaskComponent implements OnInit {
     
     if(this.taskIsRunning==false){
       this.taskIsRunning=true;
+      /*const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder, true)
+      this.taskService.updateTask(this.taskId, t);*/
       this.counter = interval(1000).subscribe(()=> this.taskService.getTask(this.taskId).compteur++);
     }else{
       const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder, false)
@@ -39,7 +41,11 @@ export class SingleTaskComponent implements OnInit {
   }
 
   deleteTask(){
-    this.taskService.deleteTask(this.taskService.getTask(this.taskId));
+    if(confirm("Voulez-vous vraiment supprimer cette tache?")){
+      this.taskService.deleteTask(this.taskService.getTask(this.taskId));
+    }else{
+      return null
+    }
   }
 
   ngOnDestroy(){

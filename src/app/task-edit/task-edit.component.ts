@@ -40,7 +40,8 @@ export class TaskEditComponent implements OnInit {
       formValue['taskName'],
       formValue['taskCompteur'],
       formValue['taskFolder'],
-      false
+      false,
+      [null,null]
     );
     this.taskService.updateTask(this.taskId, taskToUpdate);
     this.router.navigate(['/overview']);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../service/task.service';
 import { Subscription } from 'rxjs';
+import { Task } from '../model/Task.model';
 
 @Component({
   selector: 'app-folder',
@@ -30,12 +31,13 @@ export class FolderComponent implements OnInit {
     }
 
     addTaskToFolder(taskTitle){
-      const nTask={
+      const nTask:Task={
         id:this.tasks.length+1,
         name: taskTitle.value,
         compteur: 0,
         folder: this.folderName,
-        isRunning: false
+        isRunning: false,
+        dates: [null,null]
       }
       if(taskTitle.value!='' && taskTitle.value!=' '){
         this.taskService.addTask(nTask);

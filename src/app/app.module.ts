@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskEditComponent } from './task-edit/task-edit.component';
 import { AllTaskComponent } from './all-task/all-task.component';
 import { ExportComponent } from './export/export.component';
+import { TaskHistoryComponent } from './task-history/task-history.component';
 
 
 
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   {path: 'newFolder', component: NewFolderComponent},
   {path: 'taskEdit/:taskId', component: TaskEditComponent},
   {path: 'export', component: ExportComponent},
+  {path: 'taskHistoy', component: TaskHistoryComponent},
   {path: 'allTask', component: AllTaskComponent},
   {path: '', component: OverviewComponent},
   {path: '**', redirectTo: 'not-found' }
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     NewFolderComponent,
     TaskEditComponent,
     AllTaskComponent,
-    ExportComponent
+    ExportComponent,
+    TaskHistoryComponent
   ],
   imports: [
     BrowserModule,

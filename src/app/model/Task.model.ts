@@ -4,6 +4,9 @@ export class Task{
         public name: string,
         public compteur: number,
         public folder: string,
-        public isRunning: boolean
+        public isRunning: boolean,
+        public dates: CoupleDates[]
     ){}
 }
+
+type CoupleDates= [Date, Date]

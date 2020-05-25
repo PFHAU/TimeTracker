@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import { Task } from '../model/Task.model';
 import { NullTemplateVisitor } from '@angular/compiler';
+import { Creneau } from '../model/Creneau.model';
 
 
 @Injectable({
@@ -9,7 +10,8 @@ import { NullTemplateVisitor } from '@angular/compiler';
 export class LocalStorageService{
     constructor(){}
     tasks:object[]=this.getTasks();
-    
+    creneaux:object[]=this.getCreneaux();
+
     getTasks(){
         try{
             if(localStorage.tasks != null){
@@ -40,5 +42,33 @@ export class LocalStorageService{
     deleteTask(task:Task){
         const index : number = this.tasks.indexOf(task);
         this.tasks.splice(index,1);
+    }
+
+    //creneaux part
+    getCreneaux(){
+        try{
+            if(localStorage.creneaux != null){
+                return JSON.parse(localStorage.creneaux);
+            }else{
+                return [];
+            }
+        } catch(error){
+            console.error("Impossible de récupéré les données", error)
+            return NullTemplateVisitor;
+        }
+    }
+
+    updateCreneaux(creneaux:Creneau[]){
+        this.creneaux=creneaux;
+        localStorage.tasks = JSON.stringify(this.creneaux);
+    }
+
+    stockCreneau(creneau:Creneau ){
+        try{
+            this.creneaux.unshift(creneau);
+            localStorage.creneaux = JSON.stringify(this.creneaux);
+        } catch(error){
+            console.error("Impossible to save data in localStorage", error);
+        }
     }
 }

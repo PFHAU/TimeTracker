@@ -11,17 +11,28 @@ import { Task } from '../model/Task.model';
 })
 export class SingleTaskComponent implements OnInit {
   counter: Subscription;
-
+  
   @Input() taskName: string;
   @Input() taskCompteur: number;
   @Input() taskFolder: string;
   @Input() taskId: number;
   @Input() taskIsRunning: boolean;
+  /*@Input() taskDates: [Date,Date];*/
+  task: Task;
+  dateActive: Date;
   
-
   constructor(private taskService: TaskService) { }
 
   ngOnInit() {
+    this.dateActive=null;
+    this.task=this.taskService.getTask(this.taskId);
+    console.log("en dehor du if")
+    console.log(this.taskIsRunning);
+    if(this.taskIsRunning){
+      console.log("ici");
+      this.taskIsRunning=false;
+      this.runTask();
+    }
   }
 
   //pour l'instant ca ne met a jour que si on met pause dans le local storage 
@@ -30,12 +41,21 @@ export class SingleTaskComponent implements OnInit {
     
     if(this.taskIsRunning==false){
       this.taskIsRunning=true;
-      /*const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder, true)
+      //this.taskService.getTask(this.taskId).isRunning=true;
+      this.counter = interval(1000).subscribe(()=> this.taskCompteur++);
+      //this.dateActive=new Date();
+      //this.taskDates.pop();
+     // this.task.dates.push([this.dateActive, null]);
+      /*const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder, true, this.task.dates)
       this.taskService.updateTask(this.taskId, t);*/
-      this.counter = interval(1000).subscribe(()=> this.taskService.getTask(this.taskId).compteur++);
     }else{
-      const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder, false)
+      this.taskIsRunning=false;
+      let now = new Date();
+      this.task.dates.pop();
+      this.task.dates.push([this.dateActive, now]);
+      const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder, false, this.task.dates)
       this.taskService.updateTask(this.taskId, t);
+      this.dateActive=null;
       this.counter.unsubscribe();
         }
   }
@@ -53,6 +73,17 @@ export class SingleTaskComponent implements OnInit {
    /* const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder)
     this.taskService.updateTask(this.taskId, t);
     this.counter.unsubscribe();*/
+    if (this.taskIsRunning==true){
+      const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder, true, this.task.dates)
+      this.taskService.updateTask(this.taskId, t);
+      this.counter.unsubscribe();
+     /* this.task.dates.push([this.dateActive, null]);  
+      const t = new Task(this.taskId, this.taskName, this.taskCompteur, this.taskFolder, true, this.task.dates)
+      this.taskService.updateTask(this.taskId, t);*/
+    }
+   
+    
   }
 
 }
+type CoupleDates= [Date, Date];

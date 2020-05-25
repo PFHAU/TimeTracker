@@ -34,7 +34,8 @@ export class NewFolderComponent implements OnInit {
       formValue['taskName'],
       0,
       formValue['folderTitle'],
-      false
+      false,
+     []
     );
     this.taskService.addTask(newTask);
     this.router.navigate(['/overview']);

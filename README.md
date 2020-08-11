@@ -1,5 +1,5 @@
 # English 
-This project is my Angular study project. this tool allow the user to manage his tasks as well a s their duration, create task file, check the time spent there and manage task history. This project is developed with Angular
+This project is our Angular study project. this tool allow the user to manage his tasks as well a s their duration, create task file, check the time spent there and manage task history. This project is developed with Angular
 
 # French
 Ceci est le projet d'étude sur angular. C'est un outil qui va permettre à l'utilisateur de gérer ses taches ainsi que leur durée, de crée des dossiers de tache, de visionner le temps qu'il y a passé et de gérer un historique de tache. Ce projet est développé avec Angular
